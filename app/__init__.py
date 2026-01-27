@@ -34,7 +34,9 @@ def create_app(config_name='development'):
 
     # Register blueprints
     from app.presentation.routes.main_routes import main
+    from app.presentation.routes.admin_routes import admin
     app.register_blueprint(main)
+    app.register_blueprint(admin)
 
     # Register error handlers
     @app.errorhandler(404)

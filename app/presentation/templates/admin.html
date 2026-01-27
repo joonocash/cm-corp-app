@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin – Webinar Signups</title>
+  <meta name="description" content="Admin view for webinar signups." />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><span class="mark" aria-hidden="true"></span> Admin</div>
+      <div class="nav">
+        <a class="btn" href="{{ url_for('main.index') }}">← Back to site</a>
+        <button class="btn primary" id="exportBtn" type="button">Export CSV</button>
+        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+        <button class="btn danger" id="clearBtn" type="button">Clear ALL</button>
+      </div>
+    </header>
+
+    <section class="panel" aria-label="Admin content">
+      <div class="pad">
+        <h1>Webinar signups</h1>
+        <p class="sub">
+          This admin page reads signups from <span class="muted">localStorage</span> (same browser/device only).
+          If you open this on another computer or in incognito, it will look empty.
+        </p>
+
+        <div class="controls">
+          <div class="search">
+            <input id="q" type="text" placeholder="Search name or email..." autocomplete="off" />
+          </div>
+          <div class="stats" aria-label="Stats">
+            <span class="pill">Total: <strong id="totalCount">0</strong></span>
+            <span class="pill">Showing: <strong id="shownCount">0</strong></span>
+          </div>
+        </div>
+
+        <div id="notice" class="notice" role="status"></div>
+      </div>
+
+      <div class="tableWrap" role="region" aria-label="Signups table">
+        <table>
+          <thead>
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Email</th>
+              <th>Webinar</th>
+              <th>Consent</th>
+              <th>Timestamp</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span>© <span id="year">{{ current_year }}</span> Your Organization</span>
+      <span><a href="#" onclick="alert('Add authentication before using this in production.'); return false;">Security note</a></span>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

@@ -1,73 +1,146 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="wrap">
-  <!-- Left: Webinar info -->
-  <section class="hero" aria-label="Webinar information">
-    <div class="badge"><span class="dot" aria-hidden="true"></span> Upcoming Webinar</div>
-    <h1>Get webinar updates in your inbox.</h1>
-    <p class="sub">
-      Sign up for reminders, the agenda, and follow-up resources. No spam — only webinar-related emails.
-    </p>
+<div class="shell">
+  <div class="container">
+    <header>
+      <div class="brand"><span class="mark" aria-hidden="true"></span> Home</div>
 
-    <ul class="bullets">
-      <li><span class="check" aria-hidden="true"></span><div><strong>Reminder emails</strong> so you don't miss it.</div></li>
-      <li><span class="check" aria-hidden="true"></span><div><strong>Slides & resources</strong> sent after the session.</div></li>
-      <li><span class="check" aria-hidden="true"></span><div><strong>Priority Q&amp;A</strong> — submit questions in advance.</div></li>
-    </ul>
+      <nav aria-label="Primary navigation">
+        <a class="active" href="#about">About us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ url_for('admin.admin_index') }}">Admin</a>
+      </nav>
 
-    <div class="meta" aria-label="Webinar details">
-      <span class="pill">📅 Date: <span id="webinarDate">{{ webinar_date }}</span></span>
-      <span class="pill">⏱ Duration: 45 min</span>
-      <span class="pill">🌍 Online</span>
+      <div class="logo" aria-label="Webinar logo">
+        WEBINAR<br><span>LOGO</span>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="left" aria-label="Webinar hero">
+        <div class="dots" aria-hidden="true"></div>
+
+        <h1>WEBINAR</h1>
+        <div class="subtitle">Business conference</div>
+        <p class="lead">
+          Sign up for reminders, the agenda, and follow-up resources. No spam — only webinar-related emails.
+        </p>
+
+        <div class="timeblock" aria-label="Webinar time">
+          <div class="date">FEBRUARY, 16TH</div>
+          <div class="clock">16:00 - 18:00</div>
+        </div>
+
+        <div class="ctaRow">
+          <button class="btn" type="button" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'});">
+            Read more
+          </button>
+          <a class="link" href="#signup">Or jump to signup</a>
+        </div>
+      </section>
+
+      <aside class="right" aria-label="Webinar image">
+        <div class="image" role="img" aria-label="People at a business conference"></div>
+        <div class="rBadge"><span class="pillDot" aria-hidden="true"></span> Upcoming</div>
+        <div class="speakerLine">Best speaker <span class="sep">•</span> Best speaker</div>
+      </aside>
+    </main>
+
+    <section id="signup" class="signup" aria-label="Signup section">
+      <div class="panel">
+        <div class="pad" id="about">
+          <h2>About this webinar</h2>
+          <p>
+            Get the agenda, reminders, and post-event resources delivered to your inbox.
+            You can also submit a question in advance and we'll prioritize it in the Q&amp;A.
+          </p>
+          <p id="faq" style="margin-top:10px;">
+            <strong style="color:var(--yellow); letter-spacing:.08em; text-transform:uppercase;">FAQ:</strong>
+            We'll only send webinar-related emails. Unsubscribe anytime.
+          </p>
+          <p id="contact" style="margin-top:10px;">
+            <strong style="color:var(--yellow); letter-spacing:.08em; text-transform:uppercase;">Contact:</strong>
+            Replace this text with your support email or contact page.
+          </p>
+          <p style="margin-top:12px;">
+            <a class="link" href="{{ url_for('admin.admin_index') }}">View signups (admin)</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="panel" aria-label="Signup form panel">
+        <div class="pad">
+          <h2>Newsletter sign-up</h2>
+          <p>Enter your details and we'll keep you posted about the webinar.</p>
+
+          <div class="error" id="errorBox" role="alert"></div>
+          <div class="success" id="successBox" role="status"></div>
+
+          <form id="signupForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input id="firstName" name="firstName" type="text" placeholder="Sigrid" autocomplete="given-name" />
+              </div>
+
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" placeholder="Edberg" autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+
+            <div class="consent">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent" style="margin:0; letter-spacing:0; text-transform:none; font-weight:700;">
+                I agree to receive webinar-related emails. I can unsubscribe anytime.
+              </label>
+            </div>
+
+            <button id="submitBtn" class="submit" type="submit">Sign me up</button>
+
+            <div class="fineprint">
+              By signing up, you consent to us storing your details for webinar communication.
+              For a production site, add your Privacy Policy link here.
+            </div>
+
+            <div class="footer">
+              <span>© <span id="year">{{ current_year }}</span> Your Organization</span>
+              <span>
+                <a class="link" href="#"
+                   onclick="alert('Replace this with your privacy policy URL.'); return false;">
+                  Privacy Policy
+                </a>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="social" aria-label="Social links">
+      <a class="iconbtn" href="#" onclick="alert('Add your Twitter/X link'); return false;" aria-label="Twitter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 7.7c.01.2.01.4.01.6 0 6.2-4.7 10.6-10.6 10.6-2.1 0-4-.6-5.6-1.6h.8c1.7 0 3.3-.6 4.6-1.6-1.6 0-3-1.1-3.5-2.6.2 0 .4.1.7.1.3 0 .6 0 .9-.1-1.7-.3-3-1.8-3-3.6v0c.5.3 1.1.5 1.7.5-1-.7-1.6-1.8-1.6-3 0-.7.2-1.3.5-1.9 1.9 2.3 4.7 3.8 7.9 4-.1-.3-.1-.6-.1-1 0-2.1 1.7-3.8 3.8-3.8 1.1 0 2.1.5 2.8 1.2.9-.2 1.7-.5 2.4-.9-.3.9-.9 1.6-1.7 2.1.8-.1 1.5-.3 2.2-.6-.5.8-1.1 1.4-1.8 1.9Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="#" onclick="alert('Add your Facebook link'); return false;" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14 9h2V6h-2c-2 0-4 1.6-4 4v2H8v3h2v7h3v-7h2.1l.9-3H13v-2c0-.6.4-1 1-1Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a class="iconbtn" href="#" onclick="alert('Add your Instagram link'); return false;" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5Zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" fill="currentColor"/>
+        </svg>
+      </a>
     </div>
-  </section>
-
-  <!-- Right: Signup form -->
-  <section class="card" aria-label="Signup form">
-    <h2>Newsletter sign-up</h2>
-    <p>Enter your details and we'll keep you posted about the webinar.</p>
-
-    <div class="error" id="errorBox" role="alert"></div>
-    <div class="success" id="successBox" role="status"></div>
-
-    <form id="signupForm" novalidate>
-      <div class="row">
-        <div class="field">
-          <label for="firstName">First name</label>
-          <input id="firstName" name="firstName" type="text" placeholder="Sigrid" autocomplete="given-name" />
-        </div>
-
-        <div class="field">
-          <label for="lastName">Last name</label>
-          <input id="lastName" name="lastName" type="text" placeholder="Edberg" autocomplete="family-name" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
-      </div>
-
-      <div class="consent">
-        <input id="consent" name="consent" type="checkbox" required />
-        <label for="consent" style="margin:0;">
-          I agree to receive webinar-related emails. I can unsubscribe anytime.
-        </label>
-      </div>
-
-      <button id="submitBtn" type="submit">Sign me up</button>
-
-      <div class="fineprint">
-        By signing up, you consent to us storing your details for webinar communication.
-        For a production site, add your Privacy Policy link here.
-      </div>
-
-      <div class="footer">
-        <span>© <span id="year">{{ current_year }}</span> Your Organization</span>
-        <span><a href="#" onclick="alert('Replace this with your privacy policy URL.'); return false;">Privacy Policy</a></span>
-      </div>
-    </form>
-  </section>
-</main>
+  </div>
+</div>
 {% endblock %}
