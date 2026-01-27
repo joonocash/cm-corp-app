@@ -17,3 +17,12 @@ __pycache__/
 Thumbs.db
 
 .idx/
+
+# Environment variables
+.env
+
+# Flask instance folder
+instance/
+
+# Static file builds (if using build tools later)
+app/presentation/static/dist/

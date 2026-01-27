@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="wrap">
+  <!-- Left: Webinar info -->
+  <section class="hero" aria-label="Webinar information">
+    <div class="badge"><span class="dot" aria-hidden="true"></span> Upcoming Webinar</div>
+    <h1>Get webinar updates in your inbox.</h1>
+    <p class="sub">
+      Sign up for reminders, the agenda, and follow-up resources. No spam — only webinar-related emails.
+    </p>
+
+    <ul class="bullets">
+      <li><span class="check" aria-hidden="true"></span><div><strong>Reminder emails</strong> so you don't miss it.</div></li>
+      <li><span class="check" aria-hidden="true"></span><div><strong>Slides & resources</strong> sent after the session.</div></li>
+      <li><span class="check" aria-hidden="true"></span><div><strong>Priority Q&amp;A</strong> — submit questions in advance.</div></li>
+    </ul>
+
+    <div class="meta" aria-label="Webinar details">
+      <span class="pill">📅 Date: <span id="webinarDate">{{ webinar_date }}</span></span>
+      <span class="pill">⏱ Duration: 45 min</span>
+      <span class="pill">🌍 Online</span>
+    </div>
+  </section>
+
+  <!-- Right: Signup form -->
+  <section class="card" aria-label="Signup form">
+    <h2>Newsletter sign-up</h2>
+    <p>Enter your details and we'll keep you posted about the webinar.</p>
+
+    <div class="error" id="errorBox" role="alert"></div>
+    <div class="success" id="successBox" role="status"></div>
+
+    <form id="signupForm" novalidate>
+      <div class="row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" name="firstName" type="text" placeholder="Sigrid" autocomplete="given-name" />
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" name="lastName" type="text" placeholder="Edberg" autocomplete="family-name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+      </div>
+
+      <div class="consent">
+        <input id="consent" name="consent" type="checkbox" required />
+        <label for="consent" style="margin:0;">
+          I agree to receive webinar-related emails. I can unsubscribe anytime.
+        </label>
+      </div>
+
+      <button id="submitBtn" type="submit">Sign me up</button>
+
+      <div class="fineprint">
+        By signing up, you consent to us storing your details for webinar communication.
+        For a production site, add your Privacy Policy link here.
+      </div>
+
+      <div class="footer">
+        <span>© <span id="year">{{ current_year }}</span> Your Organization</span>
+        <span><a href="#" onclick="alert('Replace this with your privacy policy URL.'); return false;">Privacy Policy</a></span>
+      </div>
+    </form>
+  </section>
+</main>
+{% endblock %}
