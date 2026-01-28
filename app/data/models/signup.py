@@ -13,6 +13,8 @@ class SignupData:
     consent: bool
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+    job_title: Optional[str] = None
+    company: Optional[str] = None
     timestamp: datetime = field(default_factory=datetime.now)
 
     def __post_init__(self):
@@ -35,6 +37,8 @@ class SignupData:
         return {
             'firstName': self.first_name or '',
             'lastName': self.last_name or '',
+            'jobTitle': self.job_title or '',
+            'company': self.company or '',
             'email': self.email,
             'consent': self.consent,
             'ts': self.timestamp.isoformat()
@@ -48,5 +52,18 @@ class SignupData:
             consent=data.get('consent', False),
             first_name=data.get('firstName'),
             last_name=data.get('lastName'),
+            job_title=data.get('jobTitle'),
+            company=data.get('company'),
             timestamp=datetime.fromisoformat(data.get('ts', datetime.now().isoformat()))
         )
+
+    def to_csv_row(self) -> list:
+        """Convert to list for CSV serialization"""
+        return [
+            self.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+            self.first_name or '',
+            self.last_name or '',
+            self.job_title or '',
+            self.company or '',
+            self.email,
+        ]

@@ -37,7 +37,7 @@ function formatTs(iso){
 function matches(item, query){
   const s = (query || "").trim().toLowerCase();
   if (!s) return true;
-  const hay = `${item.firstName||""} ${item.lastName||""} ${item.email||""}`.toLowerCase();
+  const hay = `${item.firstName||""} ${item.lastName||""} ${item.jobTitle||""} ${item.company||""} ${item.email||""}`.toLowerCase();
   return hay.includes(s);
 }
 
@@ -55,7 +55,7 @@ function render(){
   if (filtered.length === 0){
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td colspan="7" class="muted" style="padding:16px 12px;">
+      <td colspan="9" class="muted" style="padding:16px 12px;">
         No signups found. Go to <a href="/">index</a> and submit the form to create one.
       </td>`;
     tbody.appendChild(tr);
@@ -68,6 +68,8 @@ function render(){
     tr.innerHTML = `
       <td>${escapeHtml(item.firstName || "")}</td>
       <td>${escapeHtml(item.lastName || "")}</td>
+      <td>${escapeHtml(item.jobTitle || "")}</td>
+      <td>${escapeHtml(item.company || "")}</td>
       <td>${escapeHtml(item.email || "")}</td>
       <td class="muted">${escapeHtml(item.webinar || "")}</td>
       <td>${consent}</td>
@@ -94,10 +96,12 @@ function escapeHtml(str){
 
 function exportCsv(){
   const list = readSignups().slice().sort((a,b) => String(a.ts||"").localeCompare(String(b.ts||"")));
-  const header = ["firstName","lastName","email","webinar","consent","timestamp"];
+  const header = ["firstName","lastName","jobTitle","company","email","webinar","consent","timestamp"];
   const rows = list.map(x => [
     x.firstName||"",
     x.lastName||"",
+    x.jobTitle||"",
+    x.company||"",
     x.email||"",
     x.webinar||"",
     x.consent ? "true" : "false",
@@ -163,7 +167,7 @@ tbody.addEventListener("click", async (e) => {
 
     const list = readSignups()
       .slice()
-      .sort((a,b) => String(b.ts||"").localeCompare(String(a.ts||""))); // same sort as render
+    .sort((a,b) => String(b.ts||"").localeCompare(String(a.ts||""))); // same sort as render
 
     const item = list[idx];
     const ok = confirm(`Delete signup for ${item?.email || "this entry"}?`);

@@ -67,7 +67,8 @@ class WebinarService:
                 email=data.get('email', '').strip(),
                 consent=data.get('consent', False),
                 first_name=data.get('firstName', '').strip() or None,
-                last_name=data.get('lastName', '').strip() or None
+                last_name=data.get('lastName', '').strip() or None,
+                job_title=data.get('jobTitle', '').strip() or None
             )
         except ValueError as e:
             return {

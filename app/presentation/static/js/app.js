@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const firstName = document.getElementById("firstName").value.trim();
     const lastName  = document.getElementById("lastName").value.trim();
+    const jobTitle  = document.getElementById("jobTitle").value.trim();
+    const company   = document.getElementById("company").value.trim();
     const email     = document.getElementById("email").value.trim();
     const consent   = document.getElementById("consent").checked;
 
@@ -62,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const payload = {
         firstName,
         lastName,
+        jobTitle,
+        company,
         email,
         consent,
         webinar: WEBINAR_DATE_TEXT,
