@@ -10,6 +10,9 @@
      pkgs.python311Packages.pip
      pkgs.git
      pkgs.github-cli
+     pkgs.sqlite
+     pkgs.azure-cli
+     pkgs.openssl
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
   ];

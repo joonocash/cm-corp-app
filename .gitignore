@@ -26,3 +26,6 @@ instance/
 
 # Static file builds (if using build tools later)
 app/presentation/static/dist/
+
+# Azure config (contains resource names)
+.azure-config
