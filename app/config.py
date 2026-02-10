@@ -9,6 +9,10 @@ class Config:
     # Webinar configuration
     WEBINAR_DATE_TEXT = 'TBA'
 
+    # Admin credentials
+    ADMIN_USERNAME = os.getenv('ADMIN_USERNAME', 'admin')
+    ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin')
+
     # Session configuration
     PERMANENT_SESSION_LIFETIME = timedelta(days=7)
 
