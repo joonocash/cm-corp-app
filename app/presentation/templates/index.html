@@ -4,7 +4,7 @@
 <div class="shell">
   <div class="container">
     <header>
-      <div class="brand"><span class="mark" aria-hidden="true"></span> Home</div>
+      <div class="brand"><span class="mark" aria-hidden="true"></span> CM Corp</div>
 
       <nav aria-label="Primary navigation">
         <a class="active" href="#about">About us</a>
@@ -13,8 +13,8 @@
         <a href="{{ url_for('admin.admin_index') }}">Admin</a>
       </nav>
 
-      <div class="logo" aria-label="Webinar logo">
-        WEBINAR<br><span>LOGO</span>
+      <div class="logo" aria-label="CM Corp logo">
+        <img src="{{ url_for('static', filename='images/CmCorp.jpg') }}" alt="CM Corp" />
       </div>
     </header>
 
@@ -51,21 +51,20 @@
     <section id="signup" class="signup" aria-label="Signup section">
       <div class="panel">
         <div class="pad" id="about">
-          <h2>About this webinar</h2>
+          <h2>About CM Corp</h2>
           <p>
-            Get the agenda, reminders, and post-event resources delivered to your inbox.
-            You can also submit a question in advance and we'll prioritize it in the Q&amp;A.
+            CM Corp is a leading provider of professional webinars and digital events.
+            We connect industry experts with curious minds through live sessions on business strategy,
+            technology, and leadership. Sign up for our newsletter to stay updated on upcoming events,
+            get exclusive resources, and never miss a session.
           </p>
           <p id="faq" style="margin-top:10px;">
             <strong style="color:var(--corp-blue); letter-spacing:.08em; text-transform:uppercase;">FAQ:</strong>
-            We'll only send webinar-related emails. Unsubscribe anytime.
+            We only send webinar-related emails and newsletters. You can unsubscribe at any time with one click.
           </p>
           <p id="contact" style="margin-top:10px;">
             <strong style="color:var(--corp-blue); letter-spacing:.08em; text-transform:uppercase;">Contact:</strong>
-            Replace this text with your support email or contact page.
-          </p>
-          <p style="margin-top:12px;">
-            <a class="link" href="{{ url_for('admin.admin_index') }}">View signups (admin)</a>
+            Questions? Reach out to us at info@cmcorp.com or visit our help center.
           </p>
         </div>
       </div>
@@ -121,7 +120,7 @@
             </div>
 
             <div class="footer">
-              <span>© <span id="year">{{ current_year }}</span> Your Organization</span>
+              <span>© <span id="year">{{ current_year }}</span> CM Corp</span>
               <span>
                 <a class="link" href="#"
                    onclick="alert('Replace this with your privacy policy URL.'); return false;">

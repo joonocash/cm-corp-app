@@ -25,6 +25,7 @@ body{
     radial-gradient(900px 650px at 18% 25%, rgba(44,138,255,.18), transparent 60%),
     radial-gradient(850px 650px at 78% 65%, rgba(44,138,255,.10), transparent 60%),
     linear-gradient(180deg, var(--navy-1), var(--navy-0));
+  background-attachment: fixed;
   overflow-x:hidden;
 }
 
